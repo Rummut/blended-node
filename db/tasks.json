@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1",
+    "title": "Buy groceries",
+    "completed": false
+  },
+  {
+    "id": "2",
+    "title": "Do laundry",
+    "completed": false
+  },
+  {
+    "id": "3",
+    "title": "Finish project",
+    "completed": true
+  },
+  {
+    "id": "ef657c6d-cf9a-4799-935c-51b761508e8d"
+  },
+  {
+    "title": "Buy computer",
+    "completed": true,
+    "id": "b5c7f099-fac0-438f-8c31-577afa693560"
+  }
+]
