@@ -14,7 +14,10 @@ const getOneTask = async (req, res, next) => {
     const task = await getOneTaskService(id);
     res.status(200).json(task);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next({
+      message: error.message,
+      statusCode: 404,
+    });
   }
 };
 
@@ -26,4 +29,5 @@ const createTask = async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 module.exports = { getAllTasks, getOneTask, createTask };
