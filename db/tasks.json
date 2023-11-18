@@ -1,18 +1,13 @@
 [
   {
-    "id": "1",
-    "title": "Buy groceries",
-    "completed": false
-  },
-  {
     "id": "2",
     "title": "Do laundry",
     "completed": false
   },
   {
     "id": "3",
-    "title": "Finish project",
-    "completed": true
+    "title": "Start project",
+    "completed": false
   },
   {
     "id": "ef657c6d-cf9a-4799-935c-51b761508e8d"
