@@ -1,13 +1,13 @@
 const { readDb, writeDb } = require("../utils/db");
 const crypto = require("crypto");
 const HttpError = require("../utils/HttpError");
+const Task = require("../models/Task");
 
 const getAllTasksService = async () => {
-  return await readDb();
+  return await Task.find();
 };
 const getOneTaskService = async (id) => {
-  const tasks = await readDb();
-  const task = tasks.find((task) => task.id === id);
+  const task = await Task.findById(id);
   if (!task) {
     throw new HttpError(404);
   }
@@ -15,35 +15,23 @@ const getOneTaskService = async (id) => {
 };
 
 const createTaskServices = async (body) => {
-  const tasks = await readDb();
-  const newTask = { ...body, id: crypto.randomUUID() };
-
-  tasks.push(newTask);
-  await writeDb(tasks);
-  return newTask;
+  return await Task.create(body);
 };
 
 const updateTasksService = async (id, body) => {
-  const tasks = await readDb();
-  const taskIndex = tasks.findIndex((task) => task.id === id);
-  if (taskIndex === -1) {
+  const updatedTask = await Task.findByIdAndUpdate(id, body, {new: true});
+  if (!updatedTask) {
     throw new HttpError(404);
   }
-  tasks.splice(taskIndex, 1, { ...tasks[taskIndex], ...body });
-  await writeDb(tasks);
-
-  return tasks[taskIndex];
+  return updatedTask;
 };
 
 const removeTaskService = async (id) => {
-  const tasks = await readDb();
-  const removeTaskIndex = tasks.findIndex((task) => task.id === id);
-  if (removeTaskIndex === -1) {
+  const task = await Task.findByIdAndDelete(id);
+ 
+  if (!task) {
     throw new HttpError(404);
   }
-  tasks.splice(removeTaskIndex, 1);
-
-  await writeDb(tasks);
 };
 
 module.exports = {
