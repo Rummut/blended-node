@@ -2,9 +2,10 @@ const express = require("express");
 const validateBody = require("../utils/validation/validateBody");
 const {
   registrationValidationSchemas,
+  loginValidationSchema,
 } = require("../utils/validation/auth-validation-schemas");
 const router = express.Router();
-const { registration } = require("../controllers/authController");
+const { registration, login } = require("../controllers/authController");
 
 router.post(
   "/registration",
@@ -12,7 +13,7 @@ router.post(
   registration
 );
 
-router.post("/login");
+router.post("/login", validateBody(loginValidationSchema), login);
 
 router.post("/logout");
 
