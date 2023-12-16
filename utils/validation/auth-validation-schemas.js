@@ -11,4 +11,9 @@ const registrationValidationSchemas = Joi.object({
   }),
 });
 
-module.exports = { registrationValidationSchemas };
+const loginValidationSchema = Joi.object().keys({
+  password: registrationValidationSchemas.extract("password").required(),
+  email: registrationValidationSchemas.extract("email").required(),
+});
+
+module.exports = { registrationValidationSchemas, loginValidationSchema };

@@ -33,6 +33,6 @@ const loginServices = async (body) => {
 
   await User.findByIdAndUpdate(user._id, refreshToken);
 
-  return accessToken;
+  return { accessToken: accessToken };
 };
-module.exports = { registrationServices };
+module.exports = { registrationServices, loginServices };

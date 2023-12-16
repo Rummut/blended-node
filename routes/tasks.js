@@ -11,13 +11,17 @@ const {
   updateTask,
   removeTask,
 } = require("../controllers/tasksController");
+const auth = require("../middlewares/auth");
 
 const router = express.Router();
+
+router.use(auth);
 
 router
   .route("/")
   .get(getAllTasks)
   .post(validateBody(createTasksValidationSchema), createTask);
+
 router
   .route("/:id")
   .get(getOneTask)
